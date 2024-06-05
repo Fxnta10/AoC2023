@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -24,6 +24,8 @@ func main() {
 		}
 		count++
 	}
+
+	fmt.Println(sum)
 }
 
 func check(line string, totalRed int, totalGreen int, totalBlue int) bool {
@@ -71,19 +73,19 @@ func delete(line []string, index int) []string {
 }
 
 func getNumber(line string) int { // takes "5 red" as input and returns 5
-	stringnum := ""
-	for i := 0; i < len(line); i++ {
-
-		if string(line[i]) == " " {
-			number, err := strconv.Atoi(string(stringnum))
-
-			if err != nil {
-				panic(err)
-			}
-			return number
-
-		}
-		stringnum += string(line[i])
+	num := 0
+	if len(line) == 0 {
+		return 0
 	}
-	return 0
+
+	// var number string
+	for _, char := range line {
+		if char >= 48 && char <= 57 {
+			digit := int(char - '0')
+			num += int(digit)
+		}
+	}
+
+	return num
+
 }
