@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func main2() {
+func main1() {
 	sum := 0
 	file, err := os.ReadFile("input1.txt")
 	content := string(file)
